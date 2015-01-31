@@ -1,21 +1,14 @@
-var fs = require('fs'), path = require("path"), url = require("url")
-var connect = require('connect');
-var base_url = "https://veyselsahin.com.tr/api/";
+var fs = require('fs');
 var options = {
-    key: fs.readFileSync('/etc/pki/CA/certs/ca.key'),
-    cert: fs.readFileSync('/etc/pki/CA/certs/ca.crt'),
-    ca: fs.readFileSync('/etc/pki/tls/certs/ca-bundle.crt'),
-    requestCert: true,
-    rejectUnauthorized: false
+ key: fs.readFileSync('/path/of/file/ca.key'),
+ cert: fs.readFileSync('/path/of/file/ca.crt'),
+ ca: fs.readFileSync('/path/of/file/ca-bundle.crt'),
+ requestCert: true,
+ rejectUnauthorized: false
 };
 
-
-var express = require('express'),
-    app = express(),
-    https = require('https'),
-    server = https.createServer(options, app),
-    io = require('socket.io').listen(server, {origins: '*:*'});
-    
-    
-    
+var express = require('express');
+var app = express();
+var https = require('https');
+var server = https.createServer(options, app);
 server.listen(9000);
